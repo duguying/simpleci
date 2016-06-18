@@ -9,7 +9,8 @@ import (
 
 func main() {
 	global.Ma = macaron.Classic()
+	global.Ma.Use(macaron.Renderer())
 	model.InitModel()
 	router.InitRouter()
-	global.Ma.Run()
+	global.Ma.Run(4004)
 }

@@ -9,5 +9,5 @@ import (
 var (
 	Ma *macaron.Macaron
 	Cr *cron.Cron
-	En *xorm.Engine
+	Eg *xorm.Engine
 )
