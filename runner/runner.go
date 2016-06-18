@@ -31,16 +31,27 @@ func Run(projectId string) map[string]interface{} {
 		}
 	}
 
+	if global.Lc {
+		return map[string]interface{}{
+			"error": "CI task locked, please wait",
+		}
+	}
+
 	// gitUrl := project.GitUrl
 
-	go startCi()
+	go startCi(project)
 
 	return map[string]interface{}{
 		"msg": "ci task executed",
 	}
 }
 
-func startCi() {
+func startCi(project *model.Project) {
+	global.Lc = true
+	cwd := os.Getwd()
+	workDir := project.WorkDir
+	os.Chdir(workDir)
+
 	log1, err := run("git pull")
 	if err != nil {
 		model.AddBuild(model.BUILD_RESULT_TIMEOUT, log1, "")
@@ -54,6 +65,8 @@ func startCi() {
 		}
 	}
 
+	os.Chdir(cwd)
+	global.Lc = false
 }
 
 func run(command string) (string, error) {

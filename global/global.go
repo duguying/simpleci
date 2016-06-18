@@ -10,4 +10,5 @@ var (
 	Ma *macaron.Macaron
 	Cr *cron.Cron
 	Eg *xorm.Engine
+	Lc bool = false
 )
