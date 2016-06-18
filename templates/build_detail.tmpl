@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Build Detail #{{$build_id}}</title>
+	<title>Build Detail #{{.build_id}}</title>
 </head>
 <body>
-	<h3># {{$build_id}}</h3>
+	<h3>#{{.build_id}}</h3>
 
 	<div>
-		<span>{{$result}}</span>
+		<span>{{.result}}</span>
 
 		<div class="log">
-			{{$build_log}}
+			{{.build_log}}
 		</div>
 	</div>
 </body>

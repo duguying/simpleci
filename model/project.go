@@ -10,5 +10,6 @@ type Project struct {
 	Description string
 	CiMode      int
 	Crontab     string
+	GitUrl      string
 	CreatedAt   time.Time `xorm:"created"`
 }

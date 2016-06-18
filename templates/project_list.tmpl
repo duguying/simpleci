@@ -19,7 +19,7 @@
 		{{range $project := .projects}}
 		<tr>
 			<td>{{$project.id}}</td>
-			<td>{{$project.name}}</td>
+			<td><a href="/project/{{$project.id}}">{{$project.name}}</a></td>
 			<td>{{$project.description}}</td>
 			<td>{{$project.mode}}</td>
 			<td>{{$project.create_at}}</td>
