@@ -35,6 +35,9 @@ func BuildDetailPage(ctx *macaron.Context) {
 
 func Runci(ctx *macaron.Context) {
 	projectId := ctx.Params("project_id")
-	result := runner.Run(projectId)
+	info := map[string]interface{}{
+		"commit_id": "1234",
+	}
+	result := runner.AddRunTask(projectId, info)
 	ctx.JSON(200, result)
 }
