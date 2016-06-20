@@ -3,6 +3,7 @@ package queue
 import (
 	"fmt"
 	"github.com/duguying/simpleci/model"
+	"github.com/duguying/simpleci/runner"
 	"time"
 )
 
@@ -11,16 +12,14 @@ func startQueue() {
 		time.Sleep(time.Second)
 		pending, err := model.GetBuildPending()
 		if err != nil {
-			fmt.Println("not has pending")
 			topBuilding, err := model.GetBuildQueueTop()
 			if err != nil {
-				fmt.Println("not has top one")
 			} else {
-				fmt.Println("check!!!!")
-				fmt.Println(topBuilding)
+				fmt.Printf("start build [%d]\n", topBuilding.Id)
+				model.UpdateBuild(topBuilding.Id, model.BUILD_RESULT_PENDING, "", "")
+				runner.StartCi(topBuilding)
 			}
 		} else {
-			fmt.Println("in pending")
 			fmt.Println(pending)
 		}
 	}

@@ -50,7 +50,7 @@ func AddRunTask(projectId string, info map[string]interface{}) map[string]interf
 	}
 }
 
-func startCi(build *model.Build) {
+func StartCi(build *model.Build) {
 	cwd, err := os.Getwd()
 	if err != nil {
 		return

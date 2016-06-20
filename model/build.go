@@ -65,8 +65,9 @@ func GetBuildPending() (*Build, error) {
 	}
 }
 
-func UpdateBuild(id int64, result int, updateLog, log string) {
-	// affected, err := global.Eg.Id(id).Update(&user)
+func UpdateBuild(id int64, result int, updateLog, log string) (int64, error) {
+	build := Build{Result: result, UpdateLog: updateLog, Log: log}
+	return global.Eg.Id(id).Update(&build)
 }
 
 func GetBuild(id int64) (*Build, error) {
