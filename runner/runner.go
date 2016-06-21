@@ -11,11 +11,12 @@ import (
 	"time"
 )
 
-func Run(projectId string) map[string]interface{} {
+func AddRunTask(projectId string, info map[string]interface{}) map[string]interface{} {
 	id, err := strconv.Atoi(projectId)
 	if err != nil {
 		return map[string]interface{}{
-			"error": err.Error(),
+			"result": false,
+			"error":  err.Error(),
 		}
 	}
 
@@ -23,51 +24,59 @@ func Run(projectId string) map[string]interface{} {
 	has, err := global.Eg.Get(project)
 	if err != nil {
 		return map[string]interface{}{
-			"error": err.Error(),
+			"result": false,
+			"error":  err.Error(),
 		}
 	}
 	if has {
 		return map[string]interface{}{
-			"error": "project not exist",
+			"result": false,
+			"error":  "project not exist",
 		}
 	}
 
-	if global.Lc {
+	bid, err := model.AddBuild(model.BUILD_RESULT_PENDING, info["commit_id"].(string), "", "")
+
+	if err != nil {
 		return map[string]interface{}{
-			"error": "CI task locked, please wait",
+			"result": false,
+			"error":  err.Error(),
 		}
 	}
-
-	// gitUrl := project.GitUrl
-
-	go startCi(project)
 
 	return map[string]interface{}{
-		"msg": "ci task executed",
+		"result":   true,
+		"build_id": bid,
 	}
 }
 
-func startCi(project *model.Project) {
-	global.Lc = true
-	cwd, _ := os.Getwd()
+func StartCi(build *model.Build) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		return
+	}
+
+	projectId := build.ProjectId
+	project, err := model.GetProject(projectId)
+
 	workDir := project.WorkDir
 	os.Chdir(workDir)
 
 	log1, err := run("git pull")
 	if err != nil {
-		model.AddBuild(model.BUILD_RESULT_TIMEOUT, log1, "")
+		// update
+		model.UpdateBuild(build.Id, model.BUILD_RESULT_TIMEOUT, log1, "")
 		return
 	} else {
 		log2, err := run("./simpleci.sh")
 		if err != nil {
-			model.AddBuild(model.BUILD_RESULT_TIMEOUT, log1, log2)
+			model.UpdateBuild(build.Id, model.BUILD_RESULT_TIMEOUT, log1, log2)
 		} else {
-			model.AddBuild(model.BUILD_RESULT_FINE, log1, log2)
+			model.UpdateBuild(build.Id, model.BUILD_RESULT_FINE, log1, log2)
 		}
 	}
 
 	os.Chdir(cwd)
-	global.Lc = false
 }
 
 func run(command string) (string, error) {
