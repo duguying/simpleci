@@ -5,6 +5,7 @@ import (
 	"github.com/duguying/simpleci/global"
 	"github.com/duguying/simpleci/model"
 	"github.com/gojudge/proc"
+	"os"
 	"os/exec"
 	"strconv"
 	"time"
@@ -48,7 +49,7 @@ func Run(projectId string) map[string]interface{} {
 
 func startCi(project *model.Project) {
 	global.Lc = true
-	cwd := os.Getwd()
+	cwd, _ := os.Getwd()
 	workDir := project.WorkDir
 	os.Chdir(workDir)
 

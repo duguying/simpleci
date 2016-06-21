@@ -1,0 +1,26 @@
+.content{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content .project-list{
+    width: 20%;
+    display: inline-block;
+    border-right: solid 1px #ccc;
+}
+
+.content .project-list .title{
+    
+}
+
+.content .project-list .title span{
+    display:inline-block;
+}
+
+.content .project-list .list{
+}
+
+
+.content .project-list .list li{
+    list-style:none;
+}
