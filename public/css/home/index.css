@@ -6,11 +6,23 @@
 .content .project-list{
     width: 20%;
     display: inline-block;
-    border-right: solid 1px #ccc;
+    border-right: solid 0.2em #eee;
+    padding:3em 1em;
+    height: 100%;
 }
 
 .content .project-list .title{
-    
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.content .project-list .title .add-project{
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.content .project-list .title .add-project:hover{
+    color: #3eaaaf;
 }
 
 .content .project-list .title span{
@@ -18,9 +30,119 @@
 }
 
 .content .project-list .list{
+    padding:0 0.2em;
+    
 }
 
 
 .content .project-list .list li{
-    list-style:none;
+    list-style: none;
+    height: 1.7em;
+    line-height: 1.7em;
+    padding-left: 1em;
+    width: 90%;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+    font-size: 1.1em;
+}
+
+.content .main-content{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 1em;
+    width: 78%;
+    padding-top: 1.8em;
+}
+
+.content .main-content .name{
+    height: 1.5em;
+    line-height: 1.5em;
+    font-size: 3em;
+    color: #666;
+}
+
+.content .main-content .switch{
+    border-bottom: solid 0.2em #ddd;
+    height: 2.35em;
+    line-height: 2.35em;
+    margin-top: 1em;
+}
+
+
+.content .main-content .switch span{
+    width: 4em;
+    display: inline-block;
+    text-align: center;
+    margin-right: 2em;
+    font-size: 1.1em;
+    height: 2.1em;
+}
+
+.content .main-content .switch .active{
+    color: #3eaaaf;
+    border-bottom: solid 0.15em;
+    font-weight: bold;
+}
+
+.content .main-content .switch span:hover{
+    color: #3eaaaf;
+    border-bottom: solid 0.15em;
+    cursor: pointer;
+}
+
+.content .main-content .ci-item{
+    margin-top: 1em;
+    border: solid 0.1em #ddd;
+    border-left: solid 1em #39aa56;
+    padding: 1.2em;
+    width: 100%;
+    height: 10em;
+}
+
+.content .main-content .ci-item .commit-info{
+    width: 65%;
+    display: inline-block;
+    height: 100%;
+}
+
+.content .main-content .ci-item .commit-title{
+    margin-bottom: 1em;
+}
+
+.content .main-content .ci-item .commit-title .branch{
+    color: #39aa56;
+    font-weight: bold;
+}
+
+.content .main-content .ci-item .commit-title .commit{
+    color: #39aa56;
+    margin-left: 1em;
+}
+
+.content .main-content .ci-item .job-info{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.content .main-content .ci-item .job-info .job-title{
+    color: #39aa56;
+    margin-bottom: 1em;
+}
+
+.new-project .title{
+    font-size: 1.7em;
+    height: 2em;
+    line-height: 2em;
+    margin-bottom: 0.5em;
+}
+
+.new-project .url-input{
+    min-width: 40em;
+}
+
+.new-project .submit{
+    display: block;
+    width: 6em;
+    margin-top: 2em;
 }

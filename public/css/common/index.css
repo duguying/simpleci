@@ -5,10 +5,10 @@
 }
 
 .header{
-    margin: 20px auto;
-    padding: 0 30px;
-    height: 50px;
-    line-height: 50px;
+    margin: 0 auto;
+    padding: 0 1em;
+    height: 3.5em;
+    line-height: 3.5em;
     background-color: #f1f1f1;
     color: #666;
     width: 80%;
@@ -16,5 +16,5 @@
 
 .header span{
     display: inline-flex;
-    padding-left: 50px;
+    padding-left: 5em;
 }

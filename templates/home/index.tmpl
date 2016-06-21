@@ -7,7 +7,7 @@
             <div class="project-list">
                 <div class="title">
                     <span>项目列表</span>
-                    <span>+</span>
+                    <span class="add-project" onclick="Obj.createProject()">+</span>
                 </div>
                 <ul class="list">
                     <li class="project-item">TestProject</li>
@@ -17,26 +17,50 @@
                     <li class="project-item">TestProject</li>
                 </ul>
             </div>
-            <div class="main-content">
+            <div id="main-content" class="main-content">
                 <div class="name">Laily123/lengxiaohua</div>
                 <div class="desc">
                     <div class="switch">
-                        <span>当前</span>
+                        <span class="active">当前</span>
                         <span>历史</span>
                     </div>
-                    <div>
+                    <div class="ci-item">
                         <div class="commit-info">
-                            <div class="commit-title">master Update README.md</div>
+                            <div class="commit-title">
+                                <span class="branch">master</span> 
+                                <span class="commit">Update README.md</span>
+                            </div>
                             <div class="commit-desc"></div>
                         </div>
                         <div class="job-info">
-                            <div class="job-title"></div>
-                            <div class="job-info"></div>
+                            <div class="job-title">
+                                <span>#3</span>
+                                <span>passed</span>
+                            </div>
+                            <div class="job-desc">
+                                <div> Elapsed time 1 min 36 sec</div>
+                                <div> Elapsed time 1 min 36 sec</div>
+                                <div> Elapsed time 1 min 36 sec</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
         </div>
+        <script>
+            var Obj = {
+                createProject: function(){
+                    $.get("/home/new_project",{},function(data){
+                        $("#main-content").empty().append(data);
+                    })
+                },
+                submit: function(){
+                    $.post("/home/create_project",{'url':$("#url-input").val()},function(data){
+                        console.log(data);
+                    })
+                }
+            }
+        </script>
     </body>
 </html>
