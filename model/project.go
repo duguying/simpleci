@@ -30,3 +30,10 @@ func GetProject(id int64) (*Project, error) {
 		}
 	}
 }
+
+func SaveProject(name, url string) (id int64, err error) {
+	var project Project
+	project.Name = name
+	project.GitUrl = url
+	return global.Eg.Insert(&project)
+}

@@ -1,8 +1,9 @@
 package controller
 
 import (
-	"fmt"
+	"github.com/duguying/simpleci/model"
 	"github.com/go-macaron/macaron"
+	"strings"
 )
 
 func HomeIndex(ctx *macaron.Context) {
@@ -16,9 +17,20 @@ func HomeNewProject(ctx *macaron.Context) {
 }
 
 func HomeCreateProject(ctx *macaron.Context) {
-	url := ctx.Params(":url") //拿不到url
-	fmt.Println(url)
-	url, _ = ctx.Req.Body().String() //可以拿到
-	fmt.Println(url)
-	ctx.PlainText(200, []byte("success"))
+	url := ctx.Query("url")
+	lastSlash := strings.LastIndexByte(url, '/')
+	urlParas := strings.Split(url, "/")
+	name := ""
+	if lastSlash == len(url)-1 {
+		name = urlParas[len(urlParas)-2]
+	} else {
+		name = urlParas[len(urlParas)-1]
+	}
+	_, err := model.SaveProject(name, url)
+	ctx.Data["success"] = true
+	if err != nil {
+		ctx.Data["success"] = false
+		ctx.Data["errMsg"] = err
+	}
+	ctx.HTML(200, "home/new_p_2")
 }
