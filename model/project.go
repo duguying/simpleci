@@ -15,6 +15,7 @@ type Project struct {
 	GitUrl      string
 	WorkDir     string
 	CreatedAt   time.Time `xorm:"created"`
+	Userid      int64
 }
 
 func GetProject(id int64) (*Project, error) {
@@ -35,5 +36,6 @@ func SaveProject(name, url string) (id int64, err error) {
 	var project Project
 	project.Name = name
 	project.GitUrl = url
-	return global.Eg.Insert(&project)
+	_, err = global.Eg.Insert(&project)
+	return project.Id, err
 }

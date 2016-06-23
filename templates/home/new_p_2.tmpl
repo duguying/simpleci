@@ -1,1 +1,36 @@
-new_p_2
+{{if .success}}
+    <div class="new-project">
+        <div class="title">选择 CI 工作模式</div>
+        <div class="ui form">
+            <div class="field">
+                <div class="ui toggle checkbox ">
+                    <input type="checkbox" class="select-js">
+                    <label>Hook 模式</label>
+                </div>
+                <div class="ui segment">
+                    <p>请将该链接添入git仓库的webhook条目：<span class="url">{{.host}}/hook/{{.projectID}}</span></p>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui toggle checkbox ">
+                    <input type="checkbox" class="select-js">
+                    <label>定时模式</label>
+                </div>
+                <div class="set-time">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted green button submit" onclick="Obj.ciMode()">确认</div>
+    </div>
+{{else}}
+    <div>URL 填写错误</div>
+{{end}}
+<script>
+    $(document).ready(function(){
+        $(".select-js").click(function(){
+            console.log("1");
+        })
+    });
+</script>
+

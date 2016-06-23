@@ -49,7 +49,15 @@
             </div>
         </div>
         <script>
+            $(document).ready(function(){
+                Obj.init();
+            });
             var Obj = {
+                init: function(){
+                    $("select-js").click(function(){
+                        console.log("1");
+                    })
+                },
                 createProject: function(){
                     $.get("/home/new_project",{},function(data){
                         $("#main-content").empty().append(data);
@@ -57,7 +65,12 @@
                 },
                 submit: function(){
                     $.post("/home/create_project",{'url':$("#url-input").val()},function(data){
-                        console.log(data);
+                        $("#main-content").empty().append(data);
+                    })
+                },
+                ciMode: function(){
+                    $.post("/home/ci_mode",{},function(data){
+                        
                     })
                 }
             }
