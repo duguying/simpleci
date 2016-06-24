@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"github.com/go-macaron/macaron"
 	"github.com/go-macaron/session"
+	"gopkg.in/macaron.v1"
 )
 
 func Login(c *macaron.Context) {

@@ -1,9 +1,9 @@
 package global
 
 import (
-	"github.com/go-macaron/macaron"
 	"github.com/go-xorm/xorm"
 	"github.com/gogits/cron"
+	"gopkg.in/macaron.v1"
 )
 
 var (

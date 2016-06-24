@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/duguying/simpleci/runner"
-	"github.com/go-macaron/macaron"
+	"gopkg.in/macaron.v1"
 )
 
 func IndexPage(ctx *macaron.Context) {

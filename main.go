@@ -5,14 +5,15 @@ import (
 	"github.com/duguying/simpleci/model"
 	"github.com/duguying/simpleci/queue"
 	"github.com/duguying/simpleci/router"
-	"github.com/go-macaron/macaron"
 	"github.com/go-macaron/session"
+	"gopkg.in/macaron.v1"
 )
 
 func main() {
 	global.Ma = macaron.Classic()
-	global.Ma.Use(macaron.Renderer())
 	global.Ma.Use(session.Sessioner())
+	global.Ma.Use(macaron.Renderer())
+
 	model.InitModel()
 	router.InitRouter()
 	queue.StartQueue()
