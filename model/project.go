@@ -44,3 +44,14 @@ func UpdateProject(id int64, project *Project) error {
 	_, err := global.Eg.Id(id).Update(project)
 	return err
 }
+
+func FindMyProjects(userid int64) []Project {
+	projects := make([]Project, 0)
+	err := global.Eg.Where("userid = ?", userid).Find(&projects)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	return projects
+
+}

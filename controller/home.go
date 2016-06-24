@@ -2,6 +2,7 @@ package controller
 
 import (
 	"github.com/duguying/simpleci/model"
+	"github.com/go-macaron/session"
 	"gopkg.in/macaron.v1"
 	"log"
 	"strconv"
@@ -14,8 +15,15 @@ type respObj struct {
 	Obj     interface{}
 }
 
-func HomeIndex(ctx *macaron.Context) {
+func HomeIndex(ctx *macaron.Context, sess session.Store, logger *log.Logger) {
+	userid := sess.Get("userid")
+	if nil == userid {
+		ctx.Redirect("/user/login")
+	}
 	//我的项目
+	projects := model.FindMyProjects(userid.(int64))
+	logger.Println(projects)
+	ctx.Data["projects"] = projects
 	//第一个项目的构建详情
 	ctx.HTML(200, "home/index")
 }

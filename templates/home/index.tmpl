@@ -10,11 +10,9 @@
                     <span class="add-project" onclick="Obj.createProject()">+</span>
                 </div>
                 <ul class="list">
-                    <li class="project-item">TestProject</li>
-                    <li class="project-item">TestProject</li>
-                    <li class="project-item">TestProject</li>
-                    <li class="project-item">TestProject</li>
-                    <li class="project-item">TestProject</li>
+                    {{range .projects}}
+                        <li class="project-item">{{.Name}}</li>
+                    {{end}}
                 </ul>
             </div>
             <div id="main-content" class="main-content">

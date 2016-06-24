@@ -19,11 +19,11 @@
 }
 
 .login-container .the-button .button{
-    width: 10em;
+    width: 40%;
 }
 
 .login-container .the-button .login{
-    margin-right: 8em;
+    margin-right: 15%;
 }
 
 .login-container .form .field label{

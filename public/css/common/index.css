@@ -18,3 +18,18 @@
     display: inline-flex;
     padding-left: 5em;
 }
+
+.header .exit-button{
+    float: right;
+    padding-left: 1em;
+    cursor: pointer;``
+}
+
+.header .exit-button:hover{
+    color: #39aa56;
+}
+
+.header .login-user{
+    float: right;
+    cursor: pointer;
+}

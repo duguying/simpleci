@@ -4,7 +4,7 @@
     <body>
         {{template "header"}}
         <div class="login-container">
-            <div class="title"><h2>登 录</h2></div>
+            <div class="title"><h2>注 册</h2></div>
             <div class="ui form">
                 <div class="field">
                     <label>用户名</label>
@@ -17,20 +17,18 @@
                 </div>
             </div>
             <div class="the-button">
-                <div class="ui button green login" onclick="Login.login()">登录</div>
-                <a href="/user/register"><div class="ui button Olive">注册</div></a>
+                <div class="ui button Olive" onclick="Login.register()">注册</div>
             </div>
         </div>
         <script>
             var Login = {
-                login: function(){
-                    $.post("/user/do_login",{
+                register: function(){
+                    $.post("/user/do_reg",{
                         what1:$("input[name=what1]").val(),
                         what2:$("input[name=what2]").val()
                     },function(data){
                         if(data.Success){
                          location.href="/home";
-
                         }else{
                             alert(data.Msg);
                         }
