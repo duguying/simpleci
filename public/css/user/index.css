@@ -1,0 +1,33 @@
+.login-container{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.login-container .title{
+    margin: 2em 0 1em 0;
+    text-align: center;
+    font-size: 2em;
+}
+
+.login-container .title h2{
+    font-size: 1.3em;
+}
+
+.login-container .the-button{
+    margin-top: 1.5em;
+    text-align: center;
+}
+
+.login-container .the-button .button{
+    width: 10em;
+}
+
+.login-container .the-button .login{
+    margin-right: 8em;
+}
+
+.login-container .form .field label{
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+

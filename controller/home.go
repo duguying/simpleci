@@ -51,24 +51,26 @@ func HomeCiMode(ctx *macaron.Context, logger *log.Logger) {
 	cimode := ctx.Query("cimode")
 	time := ctx.Query("time")
 	projectID := ctx.Query("projectid")
+	logger.Println(cimode)
 
 	resp := new(respObj)
 	resp.Success = true
 	project := new(model.Project)
+	var err error
 	project.CiMode, err = strconv.Atoi(cimode)
 	if err != nil {
 		resp.Success = false
 		resp.Msg = "请选择正确的ci模式"
 	}
 	project.Crontab = time
-	projectidInt, _ := strconv.Atoi(projectID)
+	projectidInt, err := strconv.Atoi(projectID)
 	if err != nil {
 		resp.Success = false
 		resp.Msg = "请选择正确的项目"
 	}
-	err := model.UpdateProject(int64(projectidInt), project)
+	err = model.UpdateProject(int64(projectidInt), project)
 	if err != nil {
 		logger.Println(err)
 	}
-	//ctx.JSON(200,)
+	ctx.JSON(200, resp)
 }

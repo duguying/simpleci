@@ -74,6 +74,11 @@
                         time:$("#time-input").val(),
                         projectid: $("#project-id").val()
                     },function(data){
+                        if(!data.Success){
+                             alert(data.Msg)
+                        }else{
+                            
+                        }
                         
                     })
                 }

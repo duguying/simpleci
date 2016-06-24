@@ -14,4 +14,7 @@ func InitRouter() {
 	global.Ma.Get("/home/new_project", controller.HomeNewProject)
 	global.Ma.Post("/home/create_project", controller.HomeCreateProject)
 	global.Ma.Post("/home/ci_mode", controller.HomeCiMode)
+
+	global.Ma.Get("/user/login", controller.Login)
+	global.Ma.Get("/user/do_login", controller.DoLogin)
 }
