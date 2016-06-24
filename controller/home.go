@@ -4,8 +4,15 @@ import (
 	"github.com/duguying/simpleci/model"
 	"github.com/go-macaron/macaron"
 	"log"
+	"strconv"
 	"strings"
 )
+
+type respObj struct {
+	Success bool
+	Msg     string
+	Obj     interface{}
+}
 
 func HomeIndex(ctx *macaron.Context) {
 	//我的项目
@@ -38,4 +45,30 @@ func HomeCreateProject(ctx *macaron.Context, logger *log.Logger) {
 		ctx.Data["host"] = ctx.Req.Host
 	}
 	ctx.HTML(200, "home/new_p_2")
+}
+
+func HomeCiMode(ctx *macaron.Context, logger *log.Logger) {
+	cimode := ctx.Query("cimode")
+	time := ctx.Query("time")
+	projectID := ctx.Query("projectid")
+
+	resp := new(respObj)
+	resp.Success = true
+	project := new(model.Project)
+	project.CiMode, err = strconv.Atoi(cimode)
+	if err != nil {
+		resp.Success = false
+		resp.Msg = "请选择正确的ci模式"
+	}
+	project.Crontab = time
+	projectidInt, _ := strconv.Atoi(projectID)
+	if err != nil {
+		resp.Success = false
+		resp.Msg = "请选择正确的项目"
+	}
+	err := model.UpdateProject(int64(projectidInt), project)
+	if err != nil {
+		logger.Println(err)
+	}
+	//ctx.JSON(200,)
 }

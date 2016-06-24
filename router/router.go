@@ -13,4 +13,5 @@ func InitRouter() {
 	global.Ma.Get("/home", controller.HomeIndex)
 	global.Ma.Get("/home/new_project", controller.HomeNewProject)
 	global.Ma.Post("/home/create_project", controller.HomeCreateProject)
+	global.Ma.Post("/home/ci_mode", controller.HomeCiMode)
 }

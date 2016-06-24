@@ -31,6 +31,11 @@ const (
 	QUEUE_STATUS_FINISHED = 3
 )
 
+const (
+	CI_MODE_HOOK = 1
+	CI_MODE_TIME = 2
+)
+
 func AddBuild(result int, commitId, updateLog, log string) (int64, error) {
 	b := Build{Result: result, CommitId: commitId, UpdateLog: updateLog, Log: log}
 	return global.Eg.Insert(&b)

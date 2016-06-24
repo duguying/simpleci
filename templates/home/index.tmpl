@@ -69,7 +69,11 @@
                     })
                 },
                 ciMode: function(){
-                    $.post("/home/ci_mode",{},function(data){
+                    $.post("/home/ci_mode",{
+                        cimode:$(".checked").attr("data-mode"),
+                        time:$("#time-input").val(),
+                        projectid: $("#project-id").val()
+                    },function(data){
                         
                     })
                 }

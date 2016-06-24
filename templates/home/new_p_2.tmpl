@@ -3,7 +3,7 @@
         <div class="title">选择 CI 工作模式</div>
         <div class="ui form">
             <div class="field">
-                <div class="ui toggle checkbox ">
+                <div class="ui toggle checkbox" data-mode="1">
                     <input type="checkbox" class="select-js">
                     <label>Hook 模式</label>
                 </div>
@@ -12,15 +12,16 @@
                 </div>
             </div>
             <div class="field">
-                <div class="ui toggle checkbox ">
+                <div class="ui toggle checkbox" data-mode="2">
                     <input type="checkbox" class="select-js">
                     <label>定时模式</label>
                 </div>
                 <div class="set-time">
-                    <input type="text">
+                    <input type="text" id="time-input">
                 </div>
             </div>
         </div>
+        <input id="project-id" type="hidden" value="{{.projectID}}">
         <div class="ui inverted green button submit" onclick="Obj.ciMode()">确认</div>
     </div>
 {{else}}
@@ -28,8 +29,10 @@
 {{end}}
 <script>
     $(document).ready(function(){
-        $(".select-js").click(function(){
-            console.log("1");
+        $(".checkbox").checkbox({
+            beforeChecked: function(){
+                $(".checked").checkbox("uncheck");
+            }
         })
     });
 </script>

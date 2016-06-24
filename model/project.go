@@ -39,3 +39,8 @@ func SaveProject(name, url string) (id int64, err error) {
 	_, err = global.Eg.Insert(&project)
 	return project.Id, err
 }
+
+func UpdateProject(id int64, project *Project) error {
+	_, err := global.Eg.Id(id).Update(project)
+	return err
+}
